@@ -1,0 +1,239 @@
+app:
+  description: An AI assistant that answers BFSI customer queries on banking products,
+    regulations and services. Monitored with Langfuse for quality observability.
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  icon_type: emoji
+  mode: advanced-chat
+  name: BFSI Customer Query Bot
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/gemini:0.9.15@16056d9c7a2de92433d96e5f18d17c444f9ff55bb7d6f91928023e25d14b1e64
+    version: null
+kind: app
+site:
+  chat_color_theme: null
+  chat_color_theme_inverted: false
+  copyright: null
+  custom_disclaimer: ''
+  default_language: en-US
+  description: null
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  icon_type: emoji
+  input_placeholder: null
+  privacy_policy: null
+  show_workflow_steps: true
+  title: BFSI Customer Query Bot
+  use_icon_as_answer_icon: false
+version: 0.7.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        attachment_image_file_size_limit: 2
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        file_upload_limit: 50
+        image_file_batch_limit: 10
+        image_file_size_limit: 10
+        knowledge_file_size_limit: 15
+        single_chunk_attachment_limit: 10
+        skill_file_size_limit: 50
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: llm
+      id: 1773651055432-llm
+      source: '1773651055432'
+      sourceHandle: source
+      target: llm
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: llm-answer
+      source: llm
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: User Input
+        type: start
+        variables: []
+      height: 73
+      id: '1773651055432'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        memory:
+          query_prompt_template: '{{#sys.query#}}
+
+
+            {{#sys.files#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 10
+        model:
+          completion_params: {}
+          mode: chat
+          name: gemini-3.5-flash-lite
+          provider: langgenius/gemini/google
+        prompt_template:
+        - id: 6ea6c808-24d4-484c-923c-577956e230e1
+          role: system
+          text: 'You are a knowledgeable BFSI (Banking, Financial Services and Insurance)
+            customer assistant. You help customers with questions about banking products,
+            services, regulations and financial concepts.
+
+
+            Your areas of expertise include:
+
+            - Retail banking (savings accounts, fixed deposits, loans, credit cards)
+
+            - RBI guidelines and banking regulations
+
+            - NEFT, RTGS, IMPS transfer charges and rules
+
+            - Home loans, personal loans, and EMI calculations
+
+            - KYC requirements and account opening procedures
+
+            - Insurance products (life, health, motor)
+
+            - Investment products (mutual funds, FDs, bonds)
+
+
+            Guidelines:
+
+            - Always provide accurate, helpful information
+
+            - If unsure, say so clearly rather than guessing
+
+            - Keep answers concise and easy to understand
+
+            - Always recommend consulting a financial advisor for major decisions
+
+            - Cite relevant regulations or guidelines when applicable
+
+
+            - For time-sensitive data such as current interest rates, repo rates,
+            exchange rates or stock prices, always advise the user to verify on rbi.org.in
+            or the respective bank''s official website, as my knowledge has a training
+            cutoff and may not reflect the latest figures.'
+        - id: 38af4f30-e2b5-4140-86db-e1207ba063ce
+          role: user
+          text: '{{#sys.query#}}'
+        selected: true
+        title: LLM
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: llm
+      position:
+        x: 379.0537752790351
+        y: 282
+      positionAbsolute:
+        x: 379.0537752790351
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        answer: '{{#llm.text#}}'
+        selected: false
+        title: Answer
+        type: answer
+        variables: []
+      height: 103
+      id: answer
+      position:
+        x: 680
+        y: 282
+      positionAbsolute:
+        x: 680
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    viewport:
+      x: 56.809255345591964
+      y: 163.90655186552533
+      zoom: 0.8149902676308767
+  rag_pipeline_variables: []
