@@ -14,12 +14,14 @@ Customer Query → Dify Chatflow → Gemini 2.5 Flash LLM → Answer
                          (Traces · Costs · Latency · Quality Scores)
 ```
 
+The importable Dify app is in `dify/bfsi-customer-query-bot.app.yaml`. Import it in Dify Studio and add your own Gemini key. No keys are stored in the export.
+
 ## Tech Stack
 
 | Component | Tool | Purpose |
 |-----------|------|---------|
 | LLM App Builder | Dify (Cloud) | No-code workflow orchestration |
-| LLM Model | Gemini 2.5 Flash | Fast, free-tier AI inference |
+| LLM Model | Gemini 2.5 Flash (evaluation runs), Gemini 3.5 Flash Lite (current Dify app) | Fast, free-tier AI inference |
 | Observability | Langfuse | Traces, costs, latency, quality scoring |
 | Domain | BFSI | Banking, Financial Services & Insurance |
 
